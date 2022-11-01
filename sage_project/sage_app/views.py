@@ -3,8 +3,20 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'sage_app/home.html')
+rooms = [
+  {'id': 1, 'name': "Let's learn python"},
+  {'id': 2, 'name': "Design with me"},
+  {'id': 3, 'name': "Frontend developers"},
+]
 
-def room(request):
-    return render(request, 'sage_app/room.html')
+def home(request):
+    context = {'rooms': rooms}
+    return render(request, 'sage_app/home.html', context)
+
+def room(request, pk):
+    room = None
+    for i in rooms:
+      if i['id'] == int(pk):
+        room = i
+    context = {'room': room}
+    return render(request, 'sage_app/room.html', context)
