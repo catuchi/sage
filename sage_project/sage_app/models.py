@@ -19,6 +19,9 @@ class Room(models.Model):
   updated = models.DateTimeField(auto_now=True)          # auto_now takes a timestamp when we save
   created = models.DateTimeField(auto_now_add=True)      # auto_now_add takes a timestamp when we first save or create this instance
 
+  class Meta:
+    ordering = ['-updated', '-created']
+
   def __str__(self):
     return self.name
 
